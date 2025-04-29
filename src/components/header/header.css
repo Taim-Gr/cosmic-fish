@@ -1,7 +1,3 @@
-.header::selection {
-  background-color: blue !important;
-  color: black !important;
-}
 .border-gradient {
   position: relative;
   border: 2px solid white;

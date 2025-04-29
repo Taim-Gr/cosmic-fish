@@ -12,6 +12,3 @@
 .leaderBoradContainer::selection {
   background-color: black !important;
 } */
-::selection {
-  background-color: black !important;
-}

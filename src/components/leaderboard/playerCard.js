@@ -55,7 +55,16 @@ export default function PlayerCard({ userName, rank, xp, gold, level }) {
                   height={20}
                 />
               )}
-              <span>{userName}</span>
+              {userName.length < 7 ? (
+                <span>{userName}</span>
+              ) : (
+                <div className="">
+                  <span className="block sm:inline">
+                    {userName.slice(0, 7)}
+                  </span>
+                  <span className="block sm:inline">{userName.slice(7)}</span>
+                </div>
+              )}
             </div>
             <div className="flex  items-center gap-x-1 ">
               <Image
