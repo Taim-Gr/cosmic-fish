@@ -1,0 +1,38 @@
+.install-prompt {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 300px;
+}
+
+.install-prompt h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+}
+
+.install-button {
+  background: #8936ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background 0.3s;
+}
+
+.install-button:hover {
+  background: #7a2ee6;
+}
+
+.install-prompt p {
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.4;
+}

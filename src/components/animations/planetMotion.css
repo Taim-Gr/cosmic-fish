@@ -1,0 +1,9 @@
+.planet-moving {
+  animation: planet-moving 10s linear infinite;
+}
+
+@keyframes planet-moving {
+  50% {
+    transform: rotate(90deg);
+  }
+}

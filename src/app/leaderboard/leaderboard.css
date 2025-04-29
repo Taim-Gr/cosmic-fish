@@ -1,0 +1,17 @@
+.box {
+  width: 200px;
+  height: 100px;
+  border: solid 5px #000;
+  border-color: white transparent transparent transparent;
+  border-radius: 50%/100px 100px 0 0;
+  /* transform: rotate(45deg); */
+}
+/* .leaderBoradContainer::selection {
+  background-color: transparent !important;
+}
+.leaderBoradContainer::selection {
+  background-color: black !important;
+} */
+::selection {
+  background-color: black !important;
+}

@@ -1,0 +1,17 @@
+.market-card {
+  animation: market-card-flow 5s linear infinite;
+  animation-direction: alternate !important;
+  animation-timing-function: ease-in !important;
+  transform: translateY(0);
+  position: relative;
+  overflow: hidden;
+}
+.market-card:hover {
+  animation-play-state: paused !important;
+}
+
+@keyframes market-card-flow {
+  50% {
+    transform: translateY(-10px);
+  }
+}
