@@ -16,7 +16,7 @@ export default function MenuIcon() {
         }}
       />
       <div
-        className="absolute top-0 right-0 "
+        className="absolute top-0 right-[-55px]"
         style={{
           transform: "translateY(40px) translateX(9px)",
         }}

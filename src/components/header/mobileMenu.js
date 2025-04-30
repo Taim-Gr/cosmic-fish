@@ -5,10 +5,13 @@ import { useMenu } from "./menuContext";
 import "./mobileMenu.css";
 
 export default function MobileMenu() {
-  const { isOpen } = useMenu();
+  const { isOpen, setIsOpen } = useMenu();
+  function closeMenu() {
+    setIsOpen(false);
+  }
   return (
     <div
-      className={`h-[152px] w-[80vw] ml-[-5px] rounded-xl  sm:hidden  top-[95px]  left-[25px] z-50 ${
+      className={`h-[152px] w-[100vw] ml-[-5px] rounded-xl  sm:hidden  top-[95px]  left-[25px] z-50 ${
         isOpen ? "opacity-100" : "opacity-0"
       } transition-all duration-300 `}
       style={{
@@ -26,6 +29,7 @@ export default function MobileMenu() {
             boxShadow: "0 0 10px rgba(59, 130, 246, 0.3)",
             background: "rgba(21,32,63,0.6)",
           }}
+          onClick={closeMenu}
         >
           Leaderboard
         </Link>
@@ -37,6 +41,7 @@ export default function MobileMenu() {
             boxShadow: "0 0 10px rgba(59, 130, 246, 0.3)",
             background: "rgba(21,32,63,0.6)",
           }}
+          onClick={closeMenu}
         >
           Market
         </Link>

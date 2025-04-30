@@ -23,7 +23,7 @@ async function LeaderboardContent() {
           />
 
           <h1
-            className="text-white mb-4 text-center text-[35px] font-bold"
+            className="text-white mb-4 text-center text-[25px] sm:text-[35px] font-bold"
             style={{ fontFamily: "AirStrike" }}
           >
             GLACTIC OCEAN LEADERBOARD

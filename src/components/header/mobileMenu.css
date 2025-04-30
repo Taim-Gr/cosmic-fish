@@ -2,12 +2,12 @@
 .mobile-menu {
   content: "";
   position: absolute;
-  top: -30px;
-  right: -1px;
+  top: -24px;
+  right: 54px;
   width: 0;
   height: 0;
-  border-top: 11px solid transparent;
-  border-bottom: 30px solid rgb(21, 32, 63);
+  border-top: 12px solid transparent;
+  border-bottom: 22px solid rgba(21, 32, 63, 0.8);
   border-right: 20px solid transparent;
   border-left: 20px solid transparent;
   z-index: 10000000000;
