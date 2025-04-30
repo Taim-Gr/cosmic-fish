@@ -24,45 +24,62 @@ export default function PushNotificationManager() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if ("serviceWorker" in navigator && "PushManager" in window) {
+    if (
+      typeof window !== "undefined" &&
+      "serviceWorker" in navigator &&
+      "PushManager" in window
+    ) {
       setIsSupported(true);
-      registerServiceWorker();
+      checkSubscription();
     }
   }, []);
 
-  async function registerServiceWorker() {
-    const registration = await navigator.serviceWorker.register("/sw.js", {
-      scope: "/",
-      updateViaCache: "none",
-    });
-    const sub = await registration.pushManager.getSubscription();
-    setSubscription(sub);
+  async function checkSubscription() {
+    try {
+      const registration = await navigator.serviceWorker.ready;
+      const sub = await registration.pushManager.getSubscription();
+      setSubscription(sub);
+    } catch (error) {
+      console.error("Error checking push subscription:", error);
+    }
   }
 
   async function subscribeToPush() {
-    const registration = await navigator.serviceWorker.ready;
-    const sub = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(
-        process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
-      ),
-    });
-    setSubscription(sub);
-    await subscribeUser(sub);
+    try {
+      const registration = await navigator.serviceWorker.ready;
+      const sub = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(
+          process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
+        ),
+      });
+      setSubscription(sub);
+      await subscribeUser(sub);
+    } catch (error) {
+      console.error("Error subscribing to push:", error);
+    }
   }
 
   async function unsubscribeFromPush() {
     if (subscription) {
-      await subscription.unsubscribe();
-      setSubscription(null);
-      await unsubscribeUser();
+      try {
+        await subscription.unsubscribe();
+        setSubscription(null);
+        await unsubscribeUser();
+      } catch (error) {
+        console.error("Error unsubscribing from push:", error);
+      }
     }
   }
 
   async function sendTestNotification() {
     if (subscription) {
-      await sendNotification(message);
-      setMessage("");
+      try {
+        await sendNotification(message);
+        setMessage("");
+      } catch (error) {
+        console.error("Error sending test notification:", error);
+      }
     }
   }
 
