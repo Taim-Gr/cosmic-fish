@@ -24,51 +24,29 @@ export default function PushNotificationManager() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      "serviceWorker" in navigator &&
-      "PushManager" in window
-    ) {
+    if (typeof window !== "undefined" && "Notification" in window) {
       setIsSupported(true);
-      checkSubscription();
     }
   }, []);
 
-  async function checkSubscription() {
-    try {
-      const registration = await navigator.serviceWorker.ready;
-      const sub = await registration.pushManager.getSubscription();
-      setSubscription(sub);
-    } catch (error) {
-      console.error("Error checking push subscription:", error);
-    }
-  }
-
   async function subscribeToPush() {
     try {
-      const registration = await navigator.serviceWorker.ready;
-      const sub = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(
-          process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
-        ),
-      });
-      setSubscription(sub);
-      await subscribeUser(sub);
+      const permission = await Notification.requestPermission();
+      if (permission === "granted") {
+        setSubscription(true);
+        await subscribeUser({});
+      }
     } catch (error) {
-      console.error("Error subscribing to push:", error);
+      console.error("Error subscribing to notifications:", error);
     }
   }
 
   async function unsubscribeFromPush() {
-    if (subscription) {
-      try {
-        await subscription.unsubscribe();
-        setSubscription(null);
-        await unsubscribeUser();
-      } catch (error) {
-        console.error("Error unsubscribing from push:", error);
-      }
+    try {
+      setSubscription(null);
+      await unsubscribeUser();
+    } catch (error) {
+      console.error("Error unsubscribing from notifications:", error);
     }
   }
 
@@ -84,15 +62,15 @@ export default function PushNotificationManager() {
   }
 
   if (!isSupported) {
-    return <p>Push notifications are not supported in this browser.</p>;
+    return <p>Notifications are not supported in this browser.</p>;
   }
 
   return (
     <div>
-      <h3>Push Notifications</h3>
+      <h3>Notifications</h3>
       {subscription ? (
         <>
-          <p>You are subscribed to push notifications.</p>
+          <p>You are subscribed to notifications.</p>
           <button onClick={unsubscribeFromPush}>Unsubscribe</button>
           <input
             type="text"
@@ -104,7 +82,7 @@ export default function PushNotificationManager() {
         </>
       ) : (
         <>
-          <p>You are not subscribed to push notifications.</p>
+          <p>You are not subscribed to notifications.</p>
           <button onClick={subscribeToPush}>Subscribe</button>
         </>
       )}

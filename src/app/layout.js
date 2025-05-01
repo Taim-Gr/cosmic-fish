@@ -3,24 +3,7 @@ import StarBackground from "../components/StarBackground";
 import Header from "@/components/header/header";
 import { MenuProvider } from "@/components/header/menuContext";
 import InstallPrompt from "../components/nofitication/installPromp";
-import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
-
-export const metadata = {
-  title: "Cosmic Fishing",
-  description: "A space-themed fishing experience",
-  manifest: "/manifest.json",
-  themeColor: "#8936FF",
-  viewport:
-    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Cosmic Fishing",
-  },
-  formatDetection: {
-    telephone: false,
-  },
-};
+import ServiceWorkerInit from "@/components/ServiceWorkerInit";
 
 export default function RootLayout({ children }) {
   return (
@@ -36,12 +19,12 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#8936FF" />
       </head>
       <body>
+        <ServiceWorkerInit />
         <MenuProvider>
           <Header />
           <StarBackground />
           {children}
           <InstallPrompt />
-          <ServiceWorkerRegistration />
         </MenuProvider>
       </body>
     </html>
