@@ -1,4 +1,6 @@
 {
+  "id": "/",
+
   "theme_color": "#8936FF",
   "background_color": "#1a1f2c",
   "orientation": "any",
@@ -8,6 +10,22 @@
   "description": "A space-themed fishing experience",
   "start_url": "/",
   "scope": "/",
+  "prefer_related_applications": false,
+  "display_override": ["standalone", "minimal-ui"],
+
+  "screenshots": [
+  {
+    "src": "/screenshots/screen1.png",
+    "sizes": "1280x720",
+    "type": "image/png",
+    "form_factor": "wide"
+  },
+  {
+    "src": "/screenshots/screen2.png",
+    "sizes": "540x720",
+    "type": "image/png"
+  }
+],
   "icons": [
     {
       "src": "/icons/android-36x36.png",
